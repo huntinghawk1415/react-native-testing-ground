@@ -42,9 +42,9 @@ const Stack = StackNavigator({
   AlphaNewUdaciDeck: {
     screen: AlphaNewUdaciDeck,
     navigationOptions: {
-      headerTintColor: 'orange',
+      headerTintColor: 'white',
       headerStyle: {
-        backgroundColor: 'purple'
+        backgroundColor: 'deepskyblue'
       }
     }
   },

@@ -6,7 +6,7 @@ import HomeNewUser from './HomeNewUser'
 
 export default class AlphaHome extends Component {
   state = {
-    userNew: false,
+    userNew: true,
   }
   render() {
     const {userNew} = this.state
