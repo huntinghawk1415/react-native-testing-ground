@@ -19,15 +19,12 @@ export default class UdaciDeck extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: 250,
+    height: 200,
     width: 300,
-    borderRadius: 10,
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: 'black',
-    shadowOpacity: 10,
-    shadowRadius: 10,
+    marginTop: 25,
   },
   title: {
     fontSize: 30,

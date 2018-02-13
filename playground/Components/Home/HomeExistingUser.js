@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { ScrollView, Text, StyleSheet } from 'react-native'
 import UdaciDeck from '../Reusable/UdaciDeck'
 
 // TODO: map through the array of existing lists and return a UdaciDeck for each deck
 
 export default class HomeExistingUser extends Component {
+  state = {
+    decks: [1, 2, 3, 4, 5]
+  }
   render() {
     return (
-      <View style={styles.container}>
-        <UdaciDeck name="Deck One" count={20} />
-      </View>
+      <ScrollView contentContainerStyle={styles.container}>
+        {this.state.decks.map(s => <UdaciDeck key={s} name={`Deck ${s.toString()}`} count={s * 5} />)}
+      </ScrollView>
     )
   }
 }
@@ -17,8 +20,8 @@ export default class HomeExistingUser extends Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'lightskyblue',
-    flex: 1,
-    justifyContent: 'center',
+    paddingTop: 20,
+    paddingBottom: 20,
     alignItems: 'center',
   },
 })
