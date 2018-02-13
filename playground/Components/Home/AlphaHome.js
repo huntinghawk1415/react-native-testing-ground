@@ -12,7 +12,7 @@ export default class AlphaHome extends Component {
     const {userNew} = this.state
     return (
       userNew
-        ? <HomeNewUser />
+        ? <HomeNewUser navigation={this.props.navigation} />
         : <HomeExistingUser />
     )
   }

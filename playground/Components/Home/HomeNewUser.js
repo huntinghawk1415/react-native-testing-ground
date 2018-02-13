@@ -11,7 +11,9 @@ export default class HomeNewUser extends Component {
         <Text style={styles.textWhite}>To get started, tap on the button below</Text>
         <Text style={[styles.textWhite, styles.margin]}>to add a new UdaciDeck</Text>
         <TouchableNativeFeedback
-          background={TouchableNativeFeedback.SelectableBackground()}>
+          background={TouchableNativeFeedback.SelectableBackground()}
+          onPress={() => this.props.navigation.navigate('AlphaNewUdaciDeck')}
+        >
           <View style={styles.btn}>
             <Text style={styles.btnText}>New UdaciDeck</Text>
           </View>
