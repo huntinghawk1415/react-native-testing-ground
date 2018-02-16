@@ -4,43 +4,35 @@ import { addDeck } from '../../utils/AsyncApi'
 
 export default class AlphaNewUdaciDeck extends Component {
   state = {
-    data: null,
     input: null,
-  }
-  componentDidMount() {
-    AsyncStorage.getAllKeys().then(data => this.setState({
-      data
-    }))
   }
   handleSubmit = () => {
     const {input} = this.state
     input.search(' ') > 0
       ? alert('no spaces please')
       : addDeck(input)
+    this.props.navigation.navigate('Home')
   }
   render() {
     return (
       <View style={[styles.container, styles.containerOne]}>
-        {this.state.data
-          ? <View style={styles.containerTwo}>
-              <Text style={styles.text}>Name of the deck</Text>
-              <TextInput
-                autoFocus={true}
-                onChangeText={(input) => this.setState({
-                  input
-                })}
-                selectionColor={'deepskyblue'}
-                underlineColorAndroid={'transparent'}
-                style={styles.input}
-              />
-              <TouchableNativeFeedback onPress={this.handleSubmit}>
-                <View style={styles.btn}>
-                  <Text style={styles.btnText}>Save Deck</Text>
-                </View>
-              </TouchableNativeFeedback>
-            </View>
-          : <Text>Hello! This is the screen for a new UdaciDeck!</Text>
-        }
+         <View style={styles.containerTwo}>
+            <Text style={styles.text}>Name of the deck</Text>
+            <TextInput
+              autoFocus={true}
+              onChangeText={(input) => this.setState({
+                input
+              })}
+              selectionColor={'deepskyblue'}
+              underlineColorAndroid={'transparent'}
+              style={styles.input}
+            />
+            <TouchableNativeFeedback onPress={this.handleSubmit}>
+              <View style={styles.btn}>
+                <Text style={styles.btnText}>Save Deck</Text>
+              </View>
+            </TouchableNativeFeedback>
+          </View>
       </View>
     )
   }

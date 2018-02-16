@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { AsyncStorage } from 'react-native'
 import HomeExistingUser from './HomeExistingUser'
 import HomeNewUser from './HomeNewUser'
 
@@ -6,14 +7,23 @@ import HomeNewUser from './HomeNewUser'
 
 export default class AlphaHome extends Component {
   state = {
-    userNew: true,
+    newUser: false,
+  }
+  componentDidMount() {
+    AsyncStorage.getAllKeys().then(data => data.length > 0
+      ? this.setState({
+        newUser: true
+      })
+      : this.setState({
+        newUser: false
+      }))
   }
   render() {
-    const {userNew} = this.state
+    console.log()
     return (
-      userNew
-        ? <HomeNewUser navigation={this.props.navigation} />
-        : <HomeExistingUser />
+      this.state.newUser
+        ? <HomeExistingUser />
+        : <HomeNewUser navigation={this.props.navigation} />
     )
   }
 }

@@ -4,7 +4,7 @@ export function addDeck(title) {
   AsyncStorage.setItem(title, JSON.stringify({
     title: title,
     questions: [],
-  })).then(data => console.log(data))
+  }))
 }
 
 export function addQuestion(title, pair) {
