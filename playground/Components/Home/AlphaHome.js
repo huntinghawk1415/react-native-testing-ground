@@ -19,7 +19,6 @@ export default class AlphaHome extends Component {
       }))
   }
   render() {
-    console.log()
     return (
       this.state.newUser
         ? <HomeExistingUser />

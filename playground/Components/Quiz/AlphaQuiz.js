@@ -1,12 +1,19 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, ActivityIndicator, StyleSheet } from 'react-native'
 
 export default class AlphaQuiz extends Component {
   render() {
     return (
       <View>
-        <Text>Quiz view here!</Text>
+        <ActivityIndicator animating={true} size='large' color='red' />
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center'
+  },
+})

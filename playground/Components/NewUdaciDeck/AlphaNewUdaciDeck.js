@@ -1,23 +1,36 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, StyleSheet, AsyncStorage, TouchableNativeFeedback } from 'react-native'
+import { View, Text, TextInput, StyleSheet, AsyncStorage, TouchableNativeFeedback, Alert } from 'react-native'
 import { addDeck } from '../../utils/AsyncApi'
+
+// BUG: when adding a new deck (if HomeExistingUser is true) view doesn't update. Need to figure out a way to update on navigate back
 
 export default class AlphaNewUdaciDeck extends Component {
   state = {
-    input: null,
+    input: '',
+    keys: null,
+  }
+  componentDidMount() {
+    AsyncStorage.getAllKeys()
+      .then(keys => this.setState({
+        keys
+      }))
   }
   handleSubmit = () => {
-    const {input} = this.state
-    input.search(' ') > 0
-      ? alert('no spaces please')
-      : addDeck(input)
-    this.props.navigation.navigate('Home')
+    const {input, keys} = this.state
+    input.search(' ') > 0 || input.length < 1 || keys.filter(s => s === input).length > 0
+      ? Alert.alert(`Please enter a valid name (${input.length < 1 || keys.filter(s => s === input).length > 0 ? `you can't save a deck with ${input.length < 1 ? 'no' : 'an already used'} name` : "no spaces"})`)
+      : addDeck(input);
+    console.log(keys.filter(s => s === input))
+    if(input.search(' ') < 0 || input.length > 0) {
+      return
+    }
   }
   render() {
     return (
       <View style={[styles.container, styles.containerOne]}>
          <View style={styles.containerTwo}>
             <Text style={styles.text}>Name of the deck</Text>
+            <Text style={styles.text}>(Please no spaces)</Text>
             <TextInput
               autoFocus={true}
               onChangeText={(input) => this.setState({

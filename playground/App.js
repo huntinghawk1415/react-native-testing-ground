@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import AlphaHome from './Components/Home/AlphaHome'
 import AlphaQuiz from './Components/Quiz/AlphaQuiz'
 import AlphaNewUdaciDeck from './Components/NewUdaciDeck/AlphaNewUdaciDeck'
@@ -13,9 +13,9 @@ const Tabs = TabNavigator({
     },
   },
   Quiz: {
-    screen: AlphaQuiz,
+    screen: AlphaNewUdaciDeck,
     navigationOptions: {
-      tabBarLabel: 'Quiz',
+      tabBarLabel: 'New Deck',
     }
   }
 }, {
@@ -50,10 +50,14 @@ const Stack = StackNavigator({
   },
 })
 
+refresh = () => {
+  this.forceUpdate()
+}
+
 export default class App extends Component {
   render() {
     return (
-      <Stack />
+      <Stack refresh={this.refresh} />
     )
   }
 }

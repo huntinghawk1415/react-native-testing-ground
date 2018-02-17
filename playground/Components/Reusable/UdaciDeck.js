@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 //takes in a title and a deck size prop (will simulate until truly provided)
 
@@ -7,12 +7,12 @@ import { View, Text, StyleSheet } from 'react-native'
 
 export default class UdaciDeck extends Component {
   render() {
-    const {name, count} = this.props
+    const {name, count, method} = this.props
     return (
-      <View style={styles.container}>
+      <TouchableOpacity onPress={() => method(name)} style={styles.container}>
         <Text style={styles.title}>{name}</Text>
         <Text style={styles.subtitle}>{count}</Text>
-      </View>
+      </TouchableOpacity>
     )
   }
 }
