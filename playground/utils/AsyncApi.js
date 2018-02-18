@@ -23,11 +23,13 @@ export function getAllData() {
   AsyncStorage.getAllKeys()
     .then(keys => {
       keys.map(s => {
-        AsyncStorage.getItem(s)
+        if(s !== 'UdaciCards:notifications') {
+          AsyncStorage.getItem(s)
           .then(item => {
             arr.push([s, JSON.parse(item)])
           })
           .catch(err => err)
+        }
       })
     })
     .catch(err => err)

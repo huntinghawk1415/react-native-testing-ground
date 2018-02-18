@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StatusBar } from 'react-native'
+import { Text, View, StatusBar, AsyncStorage } from 'react-native'
 import AlphaHome from './Components/Home/AlphaHome'
 import AlphaQuiz from './Components/Quiz/AlphaQuiz'
 import AlphaNewUdaciDeck from './Components/NewUdaciDeck/AlphaNewUdaciDeck'
@@ -7,6 +7,7 @@ import AlphaNewUdaciCard from './Components/NewUdaciCard/AlphaNewUdaciCard'
 import AlphaUdaciDeckDetails from './Components/UdaciDeckDetails/AlphaUdaciDeckDetails'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { Constants } from 'expo'
+import { setLocalNotification } from './utils/Notifications'
 
 const Tabs = TabNavigator({
   Home: {
@@ -81,6 +82,9 @@ const Stack = StackNavigator({
 })
 
 export default class App extends Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
   render() {
     return (
       <View style={{flex: 1}}>

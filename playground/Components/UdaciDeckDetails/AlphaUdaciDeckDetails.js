@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { clearLocalNotification, setLocalNotification } from '../../utils/Notifications'
 
 export default class AlphaUdaciDeckDetails extends Component {
   addCard = title => {
     this.props.navigation.navigate('AlphaNewUdaciCard', {title})
   }
   takeQuiz = title => {
-    this.props.navigation.state.params.count < 1
-      ? alert("You can't take a quiz without any cards in your deck; tap the 'add' button first!")
-      : this.props.navigation.navigate('AlphaQuiz', {title})
+    if(this.props.navigation.state.params.count < 1) {
+      alert("You can't take a quiz without any cards in your deck; tap the 'add' button first!")
+    } else {
+      clearLocalNotification()
+        .then(setLocalNotification)
+      this.props.navigation.navigate('AlphaQuiz', {title})
+    }
   }
   render() {
     const {params} = this.props.navigation.state

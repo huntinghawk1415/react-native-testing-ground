@@ -54,7 +54,6 @@ export default class AlphaQuiz extends Component {
 	}
   render() {
     const {questions, total, question, correct, incorrect, flipped, end} = this.state
-    console.log(this.props.navigation.state.params.title, questions)
     return (
       questions
         ? end
