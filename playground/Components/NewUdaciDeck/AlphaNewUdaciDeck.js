@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, StyleSheet, AsyncStorage, TouchableNativeFeedback, Alert } from 'react-native'
+import { View, Text, TextInput, StyleSheet, AsyncStorage, TouchableNativeFeedback } from 'react-native'
 import { addDeck } from '../../utils/AsyncApi'
-
-// BUG: when adding a new deck (if HomeExistingUser is true) view doesn't update. Need to figure out a way to update on navigate back
 
 export default class AlphaNewUdaciDeck extends Component {
   state = {
@@ -18,11 +16,10 @@ export default class AlphaNewUdaciDeck extends Component {
   handleSubmit = () => {
     const {input, keys} = this.state
     input.search(' ') > 0 || input.length < 1 || keys.filter(s => s === input).length > 0
-      ? Alert.alert(`Please enter a valid name (${input.length < 1 || keys.filter(s => s === input).length > 0 ? `you can't save a deck with ${input.length < 1 ? 'no' : 'an already used'} name` : "no spaces"})`)
-      : addDeck(input);
-    console.log(keys.filter(s => s === input))
-    if(input.search(' ') < 0 || input.length > 0) {
-      return
+      ? alert(`Please enter a valid name (${input.length < 1 || keys.filter(s => s === input).length > 0 ? `you can't save a deck with ${input.length < 1 ? 'no' : 'an already used'} name` : "no spaces"})`)
+      : addDeck(input)
+    ;if(input.search(' ') < 0 && input.length > 0 && keys.filter(s => s === input).length < 1) {
+      this.props.navigation.navigate('AlphaUdaciDeckDetails', {title: input, count: 0})
     }
   }
   render() {

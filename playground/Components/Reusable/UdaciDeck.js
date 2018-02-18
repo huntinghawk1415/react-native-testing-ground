@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 //takes in a title and a deck size prop (will simulate until truly provided)
-
-// TODO: onPress brings user to deck detail view, preferrably TouchableNativeFeedback button properties when tapped
 
 export default class UdaciDeck extends Component {
   render() {
     const {name, count, method} = this.props
     return (
-      <TouchableOpacity onPress={() => method(name)} style={styles.container}>
+      <TouchableOpacity onPress={() => method(name, count)} style={styles.container}>
         <Text style={styles.title}>{name}</Text>
         <Text style={styles.subtitle}>{count}</Text>
       </TouchableOpacity>

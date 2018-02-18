@@ -3,8 +3,6 @@ import { ScrollView, View, Text, StyleSheet, AsyncStorage, ActivityIndicator } f
 import UdaciDeck from '../Reusable/UdaciDeck'
 import { getAllData } from '../../utils/AsyncApi'
 
-// TODO: showDetails actually shows the details
-
 export default class HomeExistingUser extends Component {
   state = {
     decks: null,
@@ -17,8 +15,8 @@ export default class HomeExistingUser extends Component {
       })
     }, 1000)
   }
-  showDetails = title => {
-    console.log(title)
+  showDetails = (title, count) => {
+    this.props.navigation.navigate('AlphaUdaciDeckDetails', {title, count})
   }
   render() {
     const {decks} = this.state

@@ -1,11 +1,11 @@
-import { AsyncStorage, Alert } from 'react-native'
+import { AsyncStorage } from 'react-native'
 
 export function addDeck(title) {
   AsyncStorage.setItem(title, JSON.stringify({
     title: title,
     questions: [],
   }))
-  Alert.alert('Added!')
+  alert('Added!')
 }
 
 export function addQuestion(title, pair) {

@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, StatusBar } from 'react-native'
 import AlphaHome from './Components/Home/AlphaHome'
 import AlphaQuiz from './Components/Quiz/AlphaQuiz'
 import AlphaNewUdaciDeck from './Components/NewUdaciDeck/AlphaNewUdaciDeck'
+import AlphaNewUdaciCard from './Components/NewUdaciCard/AlphaNewUdaciCard'
+import AlphaUdaciDeckDetails from './Components/UdaciDeckDetails/AlphaUdaciDeckDetails'
 import { TabNavigator, StackNavigator } from 'react-navigation'
+import { Constants } from 'expo'
 
 const Tabs = TabNavigator({
   Home: {
@@ -12,7 +15,7 @@ const Tabs = TabNavigator({
       tabBarLabel: 'Home',
     },
   },
-  Quiz: {
+  NewDeck: {
     screen: AlphaNewUdaciDeck,
     navigationOptions: {
       tabBarLabel: 'New Deck',
@@ -32,7 +35,7 @@ const Tabs = TabNavigator({
       borderBottomColor: 'white',
       backgroundColor: 'deepskyblue',
     }
-  }
+  },
 })
 
 const Stack = StackNavigator({
@@ -48,16 +51,44 @@ const Stack = StackNavigator({
       }
     }
   },
+  AlphaNewUdaciCard: {
+    screen: AlphaNewUdaciCard,
+    navigationOptions: {
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'deepskyblue'
+      }
+    }
+  },
+  AlphaUdaciDeckDetails: {
+    screen: AlphaUdaciDeckDetails,
+    navigationOptions: {
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'deepskyblue'
+      }
+    }
+  },
+  AlphaQuiz: {
+    screen: AlphaQuiz,
+    navigationOptions: {
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'deepskyblue'
+      }
+    }
+  },
 })
-
-refresh = () => {
-  this.forceUpdate()
-}
 
 export default class App extends Component {
   render() {
     return (
-      <Stack refresh={this.refresh} />
+      <View style={{flex: 1}}>
+        <View style={{backgroundColor: 'deepskyblue', height: Constants.statusBarHeight}}>
+          <StatusBar translucent backgroundColor='deepskyblue' />
+        </View>
+        <Stack />
+      </View>
     )
   }
 }

@@ -19,10 +19,11 @@ export default class AlphaHome extends Component {
       }))
   }
   render() {
+    const {navigation, screenProps} = this.props
     return (
       this.state.newUser
-        ? <HomeExistingUser />
-        : <HomeNewUser navigation={this.props.navigation} />
+        ? <HomeExistingUser navigation={navigation} screenProps={screenProps} />
+        : <HomeNewUser navigation={navigation} />
     )
   }
 }
